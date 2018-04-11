@@ -54,7 +54,7 @@ public class OrderManegeController {
         if(user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
         }
-        //校验一下是否是管理员
+        //校验一下是否是管理 员
         if(iUserService.checkAdminRole(user).isSuccess()){
             //是管理员
             //增加处理分类的逻辑代码
