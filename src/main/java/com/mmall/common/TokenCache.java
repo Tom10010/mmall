@@ -33,6 +33,7 @@ public class TokenCache {
         try{
             value = localCache.get(key);
             if("null".equals(value)){
+
                 return null;
             }
             return value;
