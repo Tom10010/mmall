@@ -45,8 +45,6 @@ public class UserController {
 
                 //二期 FD2E019FC885D27C1867604078785EBF
                 CookieUtil.writeLoginToken(httpServletResponse, session.getId());
-                CookieUtil.readLoginToken(httpServletRequest);
-                CookieUtil.delLoginToken(httpServletResponse, httpServletRequest);
                 RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(response.getDate()), Const.RedisCacheExTime.REDIS_SESSION_EXTIME);
             }
             return  response;
