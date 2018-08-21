@@ -1,10 +1,13 @@
 package com.mmall.controller.portal;
 
 import com.mmall.common.Const;
+import com.mmall.common.RedisPool;
 import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import com.mmall.util.JsonUtil;
+import com.mmall.util.RedisPoolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +38,10 @@ public class UserController {
     public ServerResponse<User> login(String username, String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username, password);
             if(response.isSuccess()){
-                session.setAttribute(Const.CURRENT_USER, response.getDate());
+//                session.setAttribute(Const.CURRENT_USER, response.getDate());
+
+                //二期 FD2E019FC885D27C1867604078785EBF
+                RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(response.getDate()), Const.RedisCacheExTime.REDIS_SESSION_EXTIME);
             }
             return  response;
         }
