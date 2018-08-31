@@ -6,8 +6,7 @@ import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
-import com.mmall.util.RedisPoolUtil;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.HeaderTokenizer;
+import com.mmall.util.RedisShardedPoolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -101,7 +100,7 @@ public class UserServiceImpl implements IUserService{
 //            TokenCache.setKey(TokenCache.TOKEN_PREFIX+username, forgetToken);
 
             //二期
-            RedisPoolUtil.setEx(Const.TOKEN_PREFIX+username, forgetToken, 60*60*12);
+            RedisShardedPoolUtil.setEx(Const.TOKEN_PREFIX+username, forgetToken, 60*60*12);
 
             return ServerResponse.createBySuccess(forgetToken);
         }
@@ -120,7 +119,7 @@ public class UserServiceImpl implements IUserService{
 
 //        String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX + username);
         //二期
-        String token = RedisPoolUtil.get(Const.TOKEN_PREFIX + username);
+        String token = RedisShardedPoolUtil.get(Const.TOKEN_PREFIX + username);
         if(org.apache.commons.lang3.StringUtils.equals(forgetToken, token)){
             String md5password = MD5Util.MD5EncodeUtf8(passwordNew);
             int rowCount = userMapper.updatePasswordByUsername(username, md5password);
