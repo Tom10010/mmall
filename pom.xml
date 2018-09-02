@@ -252,6 +252,12 @@
       <version>2.6.0</version>
     </dependency>
 
+    <!-- spring-session-data-redis -->
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session-data-redis</artifactId>
+      <version>1.2.0.RELEASE</version>
+    </dependency>
 
   </dependencies>
 
