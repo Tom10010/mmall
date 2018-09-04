@@ -23,12 +23,12 @@
         <property name="poolConfig" ref="jedisPoolConfig" />
     </bean>
 
-    <bean id="defaultCookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">
-        <property name="domainName" value=".happymmall.com" />
-        <property name="useHttpOnlyCookie" value="true" />
-        <property name="cookiePath" value="/" />
-        <property name="cookieMaxAge" value="31536000" />
-    </bean>
+    <!--<bean id="defaultCookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">-->
+        <!--<property name="domainName" value="zhang.com" />-->
+        <!--<property name="useHttpOnlyCookie" value="true" />-->
+        <!--<property name="cookiePath" value="/" />-->
+        <!--<property name="cookieMaxAge" value="31536000" />-->
+    <!--</bean>-->
 
 
 </beans>
