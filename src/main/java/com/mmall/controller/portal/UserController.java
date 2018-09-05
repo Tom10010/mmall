@@ -84,7 +84,7 @@ public class UserController {
         return iUserService.checkValid(str, type);
     }
 
-    @RequestMapping(value="get_user_info.do", method = RequestMethod.POST)
+    @RequestMapping(value="get_user_info.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<User> getUserInfo(/*HttpSession session,*/ HttpServletRequest request){
 //        User user = (User)session.getAttribute(Const.CURRENT_USER);

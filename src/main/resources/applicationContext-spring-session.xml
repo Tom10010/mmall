@@ -9,12 +9,20 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+
     <bean id="redisHttpSessionConfiguration" class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
-        <property name="maxInactiveIntervalInSeconds" value="1800"/>
+        <property name="maxInactiveIntervalInSeconds" value="1800" />
+    </bean>
+
+    <bean id="defaultCookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">
+        <property name="domainName" value="zhang.com" />
+        <property name="useHttpOnlyCookie" value="true" />
+        <property name="cookiePath" value="/" />
+        <property name="cookieMaxAge" value="31536000" />
     </bean>
 
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="20"/>
+        <property name="maxTotal" value="20"/>
     </bean>
 
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
@@ -23,12 +31,6 @@
         <property name="poolConfig" ref="jedisPoolConfig" />
     </bean>
 
-    <!--<bean id="defaultCookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">-->
-        <!--<property name="domainName" value="zhang.com" />-->
-        <!--<property name="useHttpOnlyCookie" value="true" />-->
-        <!--<property name="cookiePath" value="/" />-->
-        <!--<property name="cookieMaxAge" value="31536000" />-->
-    <!--</bean>-->
 
 
 
