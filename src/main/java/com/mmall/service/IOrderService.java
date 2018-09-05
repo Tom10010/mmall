@@ -39,4 +39,7 @@ public interface IOrderService {
 
     ServerResponse<String> manegeSendGoods(Long orderNo);
 
+    //二期定时关闭订单
+    void closeOrder(int hour);
+
 }
