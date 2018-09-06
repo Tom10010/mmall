@@ -26,6 +26,22 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
+    public static String getSet(String key, String value){
+        ShardedJedis jedis = null;
+        String result = null;
+
+        try {
+            jedis = RedisShardedPool.getJedis();
+            result = jedis.getSet(key, value);
+        } catch (Exception e) {
+            log.error("getSet key:{} value:{}", key, value, e);
+            RedisShardedPool.returnBrokenResource(jedis);
+            return result;
+        }
+        RedisShardedPool.returnResource(jedis);
+        return result;
+    }
+
 
     //设置有效期
     public static String setEx(String key, String value, int exTime){
