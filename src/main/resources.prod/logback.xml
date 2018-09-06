@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <property name="LOG_HOME" value="${CATALINA_HOME}/logs"></property>
         <encoding>UTF-8</encoding>
         <encoder>
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
@@ -12,9 +13,9 @@
 
     <appender name="mmall" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>d:/mmalllog/mmall.log</File>-->
-        <File>/User/imooc/apache-tomcat-7.0.75/logs/mmall.log</File>
+        <File>${LOG_HOME}/mmall.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/User/imooc/apache-tomcat-7.0.75/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
@@ -23,11 +24,10 @@
         </encoder>
     </appender>
 
-
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/home/workSpace/tomcat/tomcat-1/logs/error.log</File>
+        <File>${LOG_HOME}/error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/home/workSpace/tomcat/tomcat-1/logs/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
@@ -44,6 +44,7 @@
     <logger name="com.mmall" additivity="false" level="INFO" >
         <appender-ref ref="mmall" />
         <appender-ref ref="console"/>
+        <appender-ref ref="error" />
     </logger>
 
 
@@ -53,18 +54,18 @@
     <logger name="com.mmall.dao" level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!--<logger name="java.sql.Connection" level="DEBUG">-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
     <!--<logger name="java.sql.Statement" level="DEBUG">-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!--<logger name="java.sql.PreparedStatement" level="DEBUG">-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
 

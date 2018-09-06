@@ -37,7 +37,7 @@ public class UserSpringSessionController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "login.do", method = RequestMethod.GET)
+    @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session, HttpServletResponse httpServletResponse) {
         //测试全局异常
@@ -74,7 +74,7 @@ public class UserSpringSessionController {
         return ServerResponse.createBySuccess();
     }
 
-    @RequestMapping(value = "get_user_info.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_user_info.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> getUserInfo(HttpSession session, HttpServletRequest request) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
