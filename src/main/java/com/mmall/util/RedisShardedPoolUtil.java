@@ -44,6 +44,24 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
+
+    //设置有效期
+    public static Long setNx(String key, String value){
+        ShardedJedis jedis = null;
+        Long result = null;
+
+        try {
+            jedis = RedisShardedPool.getJedis();
+            result = jedis.setnx(key, value);
+        } catch (Exception e) {
+            log.error("setNx key:{} value:{}", key, value, e);
+            RedisShardedPool.returnBrokenResource(jedis);
+            return result;
+        }
+        RedisShardedPool.returnResource(jedis);
+        return result;
+    }
+
     /**
      * 设置key的有效期
      * @param key
